@@ -12,10 +12,10 @@ int busca_Binaria(int n, int bad) {
     int esquerdo = 1;
     int direita = n;
     int primeiraVersaoRuim = -1; 
-    // ...
+    int meio =0;
     
     while (esquerdo <= direita) {
-        int meio = esquerdo + (direita - esquerdo) / 2; 
+         meio =  (direita + esquerdo) / 2; 
         
         if (isBadVersion(meio, bad)) { 
             primeiraVersaoRuim = meio;

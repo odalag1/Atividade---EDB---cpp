@@ -1,0 +1,61 @@
+Exercicio 1 -- Primeira versão ruim
+
+De inicio modifico os parametros da versão .hpp para usar eles novamente na versao .cpp que se encontra pasta src
+
+![Declaração de parametros de função em arquivo .hpp busca binaria](img/image1.png)
+
+Logo apos vamos para implemntação da logica da atividade e do algoritmo no arquivo cpp na pasta src
+
+![Bloco Inicial de implementação](img\image2.png)
+
+No primeiro trecho do codigo faço uma simulação da função da api isBadVersion 
+
+No primeiro trecho do código, faço uma simulação da função API isBadVersion. Nela, o primeiro parâmetro, *int version*, representa a versão que está sendo testada. A função tem como objetivo retornar um valor booleano (true ou false) que indica se essa versão é defeituosa, comparando-a com o segundo parâmetro (int bad), que representa a primeira versão defeituosa real do sistema. O teste retorna true se version for maior ou igual a bad.
+
+![Função busca binaria + função simulada](img\image3.png)
+
+Neste bloco, faço a implementação do algoritmo de busca binária.
+
+Inicialmente, passamos como parâmetro o número total de versões como int n e, novamente, o parâmetro bad, que simula a nossa chave  que será usado ao decorrer do código.
+
+A partir das linhas 12 a 14, inicializo as variáveis que serão usadas para fazer funcionar o algoritmo: int esquerdo = 1, para o limite começar a contar a partir da primeira versão; int direita = n, sendo o limite superior do intervalo (da mesma forma do algoritmo de busca binária padrão). E, por último, crio uma variável int primeiraVersaoRuim para armazenar a candidata a versão ruim.
+
+![Implementação loop](img\image4.png)
+
+Depois, crio um loop while, comparando os limites esquerdo e direita. O loop permanece ativo enquanto o limite da esquerda for menor ou igual ao limite da direita (o valor de n). Dessa forma, o loop continuará a ser executado, reduzindo o intervalo, até encontrar a versão defeituosa.
+
+A partir da linha 18, começa o coração do algoritmo, onde o programa irá fazer a tomada de decisão para dividir o intervalo. Após o cálculo de meio = (direita + esquerda) / 2, o algoritmo usa a função de teste (isBadVersion) para guiar a próxima etapa da busca: As ações a partir do bloco 20 até o fim do algoritmo consistem nos seguintes passos. No primeiro if faço a comparação de teste, chamando a função isBadVersion e passando como parâmetro o meio (o índice que está sendo testado) e o parâmetro bad (a primeira versão defeituosa real) que passamos no início da função busca_binaria, caso o primeiro if  seja "ruim" (true), armazenamos ele na primeiraVersaoRuim. Em seguida, ajustamos o limite da variavel direita para, (direita = meio - 1). Fazemos isso para  busca  tentar encontrar uma versão ruim ainda mais antiga (à esquerda), pois a resposta pode ser o próprio meio ou uma versão anterior a ele, segundo bloco, else,caso a condição seja false (a versão do meio é boa), significa que a resposta (a primeira versão ruim) deve estar obrigatoriamente à direita. Por isso, ajustamos o limite inferior (esquerdo = meio + 1), descartando a metade esquerda do intervalo de busca e garantindo que o algoritmo avance para versões mais recentes(Logica do algoritmo de busca binaria).
+Por fim, o ciclo se repete até que os limites esquerdo e direita se cruzem. Ao final, a variável primeiraVersaoRuim contém o índice mais baixo da primeira versão defeituosa que foi encontrado.
+
+...............falta terminar o fim de busca binaria
+
+
+Exercicio 2 - busca sequencial ordenada
+
+Inicialmente crio uma modulo para ser chamado nos arquivos e dentro dele crio apenas uma funçao pois ira  ser a unica que será chamada no main logo em breve. Nela eu passo os parametros que será utilizados como um vetor de inteiros e o tamanho do vetor.
+
+![Imagem interface cpp](img\buscaSequencialOrdenado\image1.png)
+
+
+Como a questão pede para inicialmente implementar um vetor que seja ordenado e logo apos aplicar a busca sequencial, dentre diversos algoritmo de ordenação eu implemento o bubble sort que irá trabalhar da seguinte forma: 
+
+1 - parte
+O dentro o algoritmo crio dois loops aninhados(um externo e interno). O loop externo (for i) estabelece o número de passagens necessárias para ordenar o vetor. A cada iteração de i, o maior elemento que resta na porção desordenada do vetor é garantidamente colocado em sua posição final correta, movendo-se para a direita. o loop interno for (int j = 0; j < tamanho - 1 - i; j++) é  responsável pelas comparações e trocas. A variável j percorre a parte do vetor que ainda precisa ser ordenada. Dentro dos for ce tem as condição de if onde na primeira condição verifica se o elemento atual é maior que o seu vizinho adjacente. Se essa condição for verdadeira, a ordem está incorreta e a linha std::swap(v[j], v[j + 1]); realiza a troca dos dois elementos. Esta troca "empurra" o elemento maior uma posição para a direita, repetindo o processo até que todos os elementos do vetor estejam ordenados."
+![Imagem função void bubble Sorte](img\buscaSequencialOrdenado\image2.png)
+
+Parte 2 - Fazer a segunda funça(busca sequencial)
+
+Primeiro crio uma função int que vai receber como parametro um vetor de inteiros, tamanho do vetor e uma chave. O algoritmo percorre o vetor usando um loop for. Dentro dele, ele realiza duas verificações que se complementam da ordenação prévia do vetor: No primeiro caso,  se (v[i] == chave) verifica se o elemento atual é igual à chave. Se for, a função retorna o índice i imediatamente. e implentei uma otimização baseado nas aulas que se (v[i] > chave) não há necessidade de continuar a busca, pois a chave não poderá estar nas posições seguintes (devido à ordenação). Nesse caso, a função encerra e retorna -1(por isso tão importante ordenar para diminuir o tempo de busca) e caso  o loop terminar sem encontrar a chave, a função retorna o valor -1 na última linha, confirmando que a chave não está presente no vetor.
+
+![imagem da função busca sequencial](img\buscaSequencialOrdenado\image3.png)
+
+Parte 3 - implementar os dois algoritmos em uma só função e contar dentro da nova função quantas especialidades distintas (valores únicos) existem no vetor de entrada v.
+Inicialmente crio a função com parametros de um vetor de inteiros e tamanho do vetor;
+
+lExcelente! Vou manter sua estrutura e adicionar as informações técnicas e as finalizações que faltam para completar a documentação da função.
+
+Detalhamento da Função conta_especialidades_distintas (Continuação)
+Logo após, você cria uma condicional if (tamanho <= 0) return 0; que verifica se o tamanho do vetor é ≤0 pois, caso o vetor esteja vazio, a função retorna 0 e para de imediato o algoritmo. Na linha 31, dentro da função, você chama a função bubbleSort(v, tamanho) para ordenar o vetor desordenado. Essa ordenação é crucial, pois ela agrupa todos os valores idênticos, otimizando a contagem de distintos.
+
+Logo após,  declaro um vetor de inteiros int unicos[tamanho], que tem o mesmo tamanho do vetor original e será usado para armazenar apenas as especialidades distintas que forem encontradas. Em seguida,  inicializo a variável inteira como int contador_distintos = 0; em que a função consistira em  armazenar número total de elementos únicos e servirá como o índice para inserção no vetor unicos.
+O algoritmo então entra em um loop (int i = 0; i < tamanho; i++), que percorre cada elemento do vetor original ordenado. Onde dentro do loop se tem condicional que é responsavel if (busca_seq_ordenada(unicos, contador_distintos, v[i]) == -1) onde ela atua como o filtro de unicidade do algoritmo, usando o elemento v[i] como a chave de busca. 
