@@ -1,3 +1,5 @@
 #pragma once
 
-int recursao(int n);
+using namespace std;
+#include <string>
+int recursao(string palavra, char letra);

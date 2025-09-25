@@ -3,6 +3,7 @@
 #include <vector>
 #include "busca_binaria.hpp"
 #include "busca_seq_ordenada.hpp"
+#include "recursao.hpp"
 using namespace std;
 #define RUN_TEST(name, expr, expected)                                 \
     do {                                                               \
@@ -28,9 +29,9 @@ int main() {
 
     //Eexemplo de chamada da macro RUN_TEST
     //RUN_TEST("Titulo do teste", nome_da_funcao(entradas das funcao), resposta_esperada);
-    RUN_TEST("Busca binaria", busca_Binaria(arr1.data(),arr1.size(),5), 4); //foi
+    RUN_TEST("Busca binaria de versao ruim", busca_Binaria(5, 4), 4);  //foi
     RUN_TEST("Conta especialidades distintaas (ex1)", conta_especialidades_distintas(arr2.data(), arr2.size()), 3); //foi
-
+    RUN_TEST("Funcao recursiva",recursao("banana banana",'a'),6);
     return 0;
 }
 

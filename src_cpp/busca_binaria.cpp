@@ -1,37 +1,36 @@
 #include "busca_binaria.hpp"
 
-#include "busca_binaria.hpp"
-
-#include <iostream>
 using namespace std;
 
-int busca_Binaria(int v[], int tamanho, int chave){
-    int esquerdo = 0;
-    int direita = tamanho-1;
-    int meio = 0;
+
+bool isBadVersion(int version, int bad) {
+    return version >= bad;
+} //simulacao da API
+
+
+int busca_Binaria(int n, int bad) { 
+    int esquerdo = 1;
+    int direita = n;
+    int primeiraVersaoRuim = -1; 
+    // ...
     
-    while (esquerdo<=direita){
-        meio = (esquerdo+direita)/2;
-        if(v[meio] == chave){
-            return meio;
-        } else if(v[meio] > chave){
-            direita= meio-1;
-        } else if(v[meio] <chave){
-            esquerdo = meio+1;
+    while (esquerdo <= direita) {
+        int meio = esquerdo + (direita - esquerdo) / 2; 
+        
+        if (isBadVersion(meio, bad)) { 
+            primeiraVersaoRuim = meio;
+            
+            
+            direita = meio - 1; 
+        } else {
+            esquerdo = meio + 1;
         } 
     }
-    return -1;
-    //[1,2,3,4,5,6];
     
+    return primeiraVersaoRuim; 
 }
-/*int main()
-{
-    int numero[5] = {1,2,3,4,5};
-    int local = busca_Binaria(numero,5,5);
-    
-    cout<<"Hello World";
-    cout << endl << local;
-    return 0;
-}*/
+
+
+
 
 
