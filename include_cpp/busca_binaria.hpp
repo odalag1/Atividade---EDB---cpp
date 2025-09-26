@@ -1,4 +1,4 @@
 #pragma once
 #include <vector>
 
-int busca_Binaria(int n, int bad);
+int busca_Binaria(int v[],int tamanho, int bad);

@@ -8,26 +8,26 @@ bool isBadVersion(int version, int bad) {
 } //simulacao da API
 
 
-int busca_Binaria(int n, int bad) { 
-    int esquerdo = 1;
-    int direita = n;
-    int primeiraVersaoRuim = -1; 
-    int meio =0;
+int busca_Binaria(int v[], int bad) { 
+    
+    int esquerdo = 0;
+    int direita = tamanho - 1;
+    int indicePrimeiraVersaoRuim = -1; 
+    int meio = 0;
     
     while (esquerdo <= direita) {
-         meio =  (direita + esquerdo) / 2; 
+        meio = esquerdo + (direita - esquerdo) / 2;
         
-        if (isBadVersion(meio, bad)) { 
-            primeiraVersaoRuim = meio;
-            
-            
+        // Chamada direta à função isBadVersion, usando o valor do vetor e o número de controle
+        if (isBadVersion(v[meio], bad)) { 
+            indicePrimeiraVersaoRuim = meio;
             direita = meio - 1; 
         } else {
             esquerdo = meio + 1;
         } 
     }
     
-    return primeiraVersaoRuim; 
+    return indicePrimeiraVersaoRuim; 
 }
 
 
