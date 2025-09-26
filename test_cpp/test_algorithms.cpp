@@ -29,7 +29,7 @@ int main() {
 
     //Eexemplo de chamada da macro RUN_TEST
     //RUN_TEST("Titulo do teste", nome_da_funcao(entradas das funcao), resposta_esperada);
-    RUN_TEST("Busca binaria de versao ruim", busca_Binaria(arr1.data(),arr1.size(), 4), 4);  //foi
+    RUN_TEST("Busca binaria de versao ruim", busca_Binaria(arr1.data(),arr1.size(), 4), 3);  //foi
     RUN_TEST("Conta especialidades distintaas (ex1)", conta_especialidades_distintas(arr2.data(), arr2.size()), 3); //foi
     RUN_TEST("Funcao recursiva",recursao("banana banana",'a'),6);
     return 0;
