@@ -2,28 +2,28 @@ Exercicio 1 -- Primeira versão ruim
 
 De inicio modifico os parametros da versão .hpp para usar eles novamente na versao .cpp que se encontra pasta src
 
-![Declaração de parametros de função em arquivo .hpp busca binaria](img/image1.png)
+![Declaração de parametros de função em arquivo .hpp busca binaria](img/buscaBinaria/image1.png)
 
 Logo apos vamos para implemntação da logica da atividade e do algoritmo no arquivo cpp na pasta src
 
-![Bloco Inicial de implementação](img/image2.png)
+![Bloco Inicial de implementação](img/buscaBinariaimage2.png)
 
 No primeiro trecho do código, faço uma simulação da função API isBadVersion. Nela, o primeiro parâmetro, *int version*, representa a versão que está sendo testada. A função tem como objetivo retornar um valor booleano (true ou false) que indica se essa versão é defeituosa, comparando-a com o segundo parâmetro (int bad), que representa a primeira versão defeituosa real do sistema. O teste retorna true se version for maior ou igual a bad.
 
-![Função busca binaria + função simulada](img\image3.png)
+![Função busca binaria + função simulada](img/buscaBinaria/image3.png)
 
 Neste bloco, faço a implementação do algoritmo de busca binária.
 
 Inicialmente, passamos como parâmetro o número total de versões como em forma de um vetor de inteiros e, novamente, o parâmetro bad, que simula a nossa chave  que será usado ao decorrer do código.
 
 A partir das linhas 13, inicializo as variáveis que serão usadas para fazer funcionar o algoritmo: int esquerdo = 1, para o limite começar a contar a partir da primeira versão e  int direita = tamanho-1, que começa a partir do ultimo elemento do vetor (da mesma forma do algoritmo de busca binária padrão). E, por último, crio uma variável e por ultimo crio uma variavel indicePrimeiraVersaoRuim que irá armazenar o índice da primeira versão defeituosa encontrada, inicializada com -1 (indicando que ainda não foi encontrada nenhuma versão defeituosa).
-![Implementação loop](img/image4.png)
+![Implementação loop](img/buscaBinaria/image4.png)
 
 O coração do algoritmo começa com o loop while (esquerdo <= direita), onde o programa fará a tomada de decisão para dividir o intervalo. Após o cálculo de meio = (direita + esquerdo) / 2 , o algoritmo usa a função de teste (isBadVersion) para guiar a próxima etapa da busca.
-crio, duas condicionals onde na primeira condição fazemos a comparação de teste, chamando a função isBadVersion e passando como parâmetro o valor da versão (v[meio]) e o parâmetro bad  que passei no início da função busca_Binaria.
-Onde,  Caso a condição seja "ruim" (true), armazenamos o índice do meio (meio) na variável indicePrimeiraVersaoRuim.
-Em seguida, ajustamos o limite da variável direita para (direita = meio - 1). Fazemos isso para forçar a busca a tentar encontrar uma versão ruim ainda mais antiga (à esquerda), pois a resposta pode ser o próprio meio ou uma versão anterior a ele.
-Na segunda condição else, se a versão do meio for "boa" (false), ajustamos o limite esquerdo para (esquerdo = meio + 1). 
+crio, duas condicionals onde na primeira condição faz  a comparação de teste, chamando a função isBadVersion e passando como parâmetro o valor da versão (v[meio]) e o parâmetro bad  que passei no início da função busca_Binaria.
+Onde,  Caso a condição seja "ruim" (true), armazena o índice do meio (meio) na variável indicePrimeiraVersaoRuim.
+Em seguida, ajusto o limite da variável direita para (direita = meio - 1). Tendo como objetivo forçar a busca a tentar encontrar uma versão ruim ainda mais antiga (à esquerda), pois a resposta pode ser o próprio meio ou uma versão anterior a ele.
+Na segunda condição else, se a versão do meio for "boa" (false), e ajusto o limite esquerdo para (esquerdo = meio + 1). 
 descartando a metade esquerda do intervalo de busca e garantindo que o algoritmo avance para versões mais "recentes".
 
 Por fim, o ciclo se repete até que os limites esquerdo e direita se cruzem. Ao final, a variável indicePrimeiraVersaoRuim contém o índice mais baixo da primeira versão defeituosa que foi encontrado, ou -1 caso nenhuma tenha sido encontrada.
@@ -60,3 +60,11 @@ Logo após, crio uma condicional if (tamanho <= 0) return 0, que verifica se o t
 
 Depois declaro um vetor de inteiros int unicos[tamanho], que tem o mesmo tamanho do vetor original e será usado para armazenar apenas as especialidades distintas que forem encontradas. Em seguida,  inicializo a variável inteira como int contador_distintos = 0; em que a função consistira em  armazenar número total de elementos únicos e servirá como o índice para inserção no vetor unicos.
 O algoritmo então entra em um loop (int i = 0, i < tamanho, i++), que percorre cada elemento do vetor original ordenado. Onde dentro do loop se tem condicional que é responsavel if (busca_seq_ordenada(unicos, contador_distintos, v[i]) == -1) onde ela atua como o filtro de unicidade do algoritmo, usando o elemento v[i] como a chave de busca. Onde a função busca_seq_ordenada tenta encontrar a chave dentro do vetor unicos e também com a condição == -1 verifica se a busca falhou. Então se a condição for verdadeira, o código confirma que a especialidade é nova e distinta e apenas nesse caso, o elemento é adicionado ao vetor unicos e a variável contador_distintos é incrementada (contador_distintos++), registrando a nova contagem do elemento e esse ciclo acaba se repetindo até que todos os elementos do vetor principal sejam verificados, resultando no retorno do valor final de contador_distintos.
+
+Exercicio 3 - Função recursiva conta letra em uma palavra
+
+Para este exercício, implemento uma função recursiva chamada recursao que conta quantas vezes uma determinada letra aparece em uma palavra. A lógica funciona quebrando o problema em partes menores até chegar a uma solução simples. Minha função se inicia com uma condição de parada. Na linha if (palavra.empty()), eu verifico se a string palavra está vazia. Se estiver, significa que não há mais letras para contar, então eu simplesmente retorno 0. Isso garante que a função pare de se chamar infinitamente.
+
+Em seguida, no else if (palavra[0] == letra), eu verifico se o primeiro caractere da palavra atual é igual à letra que estou procurando. Se for, significa que encontrei uma ocorrência! Então, eu retorno 1 (para contar essa ocorrência) e somo com o resultado da chamada da própria função recursao, mas passando o resto da palavra (palavra.substr(1)) como parâmetro. Essencialmente, eu conto a letra atual e peço para a função contar o resto para mim.
+
+Por último, se a primeira letra não for a que eu procuro, caímos no else. Nesse caso, eu não somo 1, apenas chamo a função recursao novamente com o resto da palavra (palavra.substr(1)). E se repete até que a palavra fique vazia, quando a condição de parada é atingida.    
